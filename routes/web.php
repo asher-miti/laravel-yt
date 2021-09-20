@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
-});
+Route::get("/products", [ProductsController::class, "index"]);
+Route::get("/products/about", [ProductsController::class, "about"]);
 
-//Route to users
-Route::get("/users", function () {
-    return "Welcome to the users page";
-});
-
-Route::get("/users", function () {
-    return ["PHP", "HTML", "Laravel"];
-});
-
-Route::get("/users", function () {
-    return response()->json([
-        "name" => "Asher",
-        "course" => "YouTube Crash Course",
-    ]);
-});
-
-Route::get("/users", function () {
-    return redirect("/");
-});
+Route::get("/products", "App\Http\Controllers\ProductsController@index");
